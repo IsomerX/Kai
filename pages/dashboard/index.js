@@ -8,7 +8,7 @@ import { firestore } from "../../lib/firebase";
 
 const Dashboard = () => {
     // const { user, username } = useContext(UserContext);/
-    const user = "Dhruv"
+    const user = "Dhruv";
     const date = new Date();
     const [upload, setUpload] = useState(false);
 
@@ -52,7 +52,7 @@ const Dashboard = () => {
                     Upload Docs
                 </div>
                 <div className="border-4 bg-[#F7CE68] text-white w-fit px-16 py-4 hover:cursor-pointer font-hk font-bold text-xl rounded-xl shadow-md mt-6">
-                    Review Docs
+                    <a href="../../public/mr.pdf">Review Now</a>
                 </div>
             </div>
             {upload && <Upload uploader={uploader} />}

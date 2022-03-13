@@ -73,7 +73,7 @@ export default function Home() {
                             {user === null ? (
                                 <>
                                     <button
-                                        className="bg-yellow-400 text-white py-3"
+                                        className="bg-yellow-500 rounded-lg shadow-md text-white py-3"
                                         onClick={signInWithGoogle}
                                     >
                                         Register Yourself

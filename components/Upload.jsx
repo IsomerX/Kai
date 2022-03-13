@@ -2,7 +2,32 @@ import { getStorage, ref } from "firebase/storage";
 
 const Upload = ({uploader}) => {
     const SubmitHandler = (e) => {
-        console.log(e.originalEvent.dataTransfer.files);
+        e.preventDefault();
+        alert("Success!");
+        // console.log(e.target.files)
+        return;
+        const file = e.target.files[0];
+        const storageRef = getStorage().ref();
+        const uploadTask = storageRef.child(`images/${file.name}`).put(file);
+        // upload file to firebase
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+                const progress = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+                console.log(progress);
+            },
+            (error) => {
+                console.log(error);
+            },
+            () => {
+                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    console.log(downloadURL);
+                    uploader(downloadURL);
+                });
+            }
+        );
     };
     return (
         <div className="h-[100vh] w-full">
